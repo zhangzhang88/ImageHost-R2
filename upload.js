@@ -1,11 +1,13 @@
-const config = window.IMG_BED_CONFIG || {};
-const apiBaseUrl = config.apiBaseUrl || "http://localhost:8787";
-
-// 获取上传表单的事件监听
 document.getElementById('upload-form').addEventListener('submit', async (e) => {
   e.preventDefault();
   const fileInput = document.getElementById('file');
   const files = fileInput.files; // 获取所有选择的文件
+
+  const MAX_FILES = 5;  // 限制最大上传文件数为 5
+
+  if (files.length > MAX_FILES) {
+    return alert(`您最多只能上传 ${MAX_FILES} 张图片`);
+  }
 
   if (files.length === 0) return alert("请选择图片");
 
