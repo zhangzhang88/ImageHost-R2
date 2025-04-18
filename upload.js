@@ -1,10 +1,14 @@
+// 前端代码读取 config 配置
+const config = window.IMG_BED_CONFIG || {};
+const apiBaseUrl = config.apiBaseUrl || "http://localhost:8787";
+const MAX_FILES = config.maxFiles || 5; // 读取最大上传文件数，默认为 5
+
 document.getElementById('upload-form').addEventListener('submit', async (e) => {
   e.preventDefault();
   const fileInput = document.getElementById('file');
   const files = fileInput.files; // 获取所有选择的文件
 
-  const MAX_FILES = 5;  // 限制最大上传文件数为 5
-
+  // 检查文件数量是否超过最大限制
   if (files.length > MAX_FILES) {
     return alert(`您最多只能上传 ${MAX_FILES} 张图片`);
   }
@@ -13,7 +17,7 @@ document.getElementById('upload-form').addEventListener('submit', async (e) => {
 
   const formData = new FormData();
 
-  // 添加所有文件到 formData
+  // 添加所有选择的文件到 formData
   for (let i = 0; i < files.length; i++) {
     formData.append("file", files[i]);
   }
