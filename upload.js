@@ -17,25 +17,16 @@ document.getElementById('upload-form').addEventListener('submit', async (e) => {
   try {
     const res = await fetch(`${apiBaseUrl}/upload`, {
       method: "POST",
-      body: formData,
+      body: formData
     });
 
-    let data = {};
-    try {
-      data = await res.json();
-    } catch (jsonError) {
-      return resultDiv.innerHTML = `<p>❌ 上传失败：响应格式不合法（非 JSON）</p>`;
-    }
+    const data = await res.json();
 
-    const urls = data.urls || (data.url ? [data.url] : null);
-
-    if (res.ok && urls) {
+    if (res.ok && data.url) {
       resultDiv.innerHTML = `
         <p>✅ 上传成功</p>
-        ${urls.map(url => `
-          <p><a href="${url}" target="_blank">${url}</a></p>
-          <img src="${url}" width="300" />
-        `).join('')}
+        <p><a href="${data.url}" target="_blank">${data.url}</a></p>
+        <img src="${data.url}" width="300" />
       `;
     } else {
       resultDiv.innerHTML = `<p>❌ 上传失败：${data.error || '未知错误'}</p>`;
