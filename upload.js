@@ -1,26 +1,15 @@
-// 前端代码读取 config 配置
 const config = window.IMG_BED_CONFIG || {};
 const apiBaseUrl = config.apiBaseUrl || "http://localhost:8787";
-const MAX_FILES = config.maxFiles || 5; // 读取最大上传文件数，默认为 5
 
 document.getElementById('upload-form').addEventListener('submit', async (e) => {
   e.preventDefault();
   const fileInput = document.getElementById('file');
-  const files = fileInput.files; // 获取所有选择的文件
+  const file = fileInput.files[0];
 
-  // 检查文件数量是否超过最大限制
-  if (files.length > MAX_FILES) {
-    return alert(`您最多只能上传 ${MAX_FILES} 张图片`);
-  }
-
-  if (files.length === 0) return alert("请选择图片");
+  if (!file) return alert("请选择图片");
 
   const formData = new FormData();
-
-  // 添加所有选择的文件到 formData
-  for (let i = 0; i < files.length; i++) {
-    formData.append("file", files[i]);
-  }
+  formData.append("file", file);
 
   const resultDiv = document.getElementById('result');
   resultDiv.innerHTML = "⏳ 上传中...";
@@ -33,14 +22,11 @@ document.getElementById('upload-form').addEventListener('submit', async (e) => {
 
     const data = await res.json();
 
-    if (res.ok && data.urls) {
+    if (res.ok && data.url) {
       resultDiv.innerHTML = `
         <p>✅ 上传成功</p>
-        <p>上传的图片：</p>
-        ${data.urls.map(url => `
-          <p><a href="${url}" target="_blank">${url}</a></p>
-          <img src="${url}" width="300" />
-        `).join('')}
+        <p><a href="${data.url}" target="_blank">${data.url}</a></p>
+        <img src="${data.url}" width="300" />
       `;
     } else {
       resultDiv.innerHTML = `<p>❌ 上传失败：${data.error || '未知错误'}</p>`;
