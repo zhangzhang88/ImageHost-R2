@@ -1,3 +1,6 @@
+const config = window.IMG_BED_CONFIG || {};
+const apiBaseUrl = config.apiBaseUrl || "http://localhost:8787";
+
 document.getElementById('upload-form').addEventListener('submit', async (e) => {
   e.preventDefault();
   const fileInput = document.getElementById('file');
@@ -12,7 +15,7 @@ document.getElementById('upload-form').addEventListener('submit', async (e) => {
   resultDiv.innerHTML = "⏳ 上传中...";
 
   try {
-    const res = await fetch("https://api.nbvil.com/upload", {
+    const res = await fetch(`${apiBaseUrl}/upload`, {
       method: "POST",
       body: formData
     });
