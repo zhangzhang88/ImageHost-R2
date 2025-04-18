@@ -22,16 +22,20 @@ document.getElementById('upload-form').addEventListener('submit', async (e) => {
 
     let data = {};
     try {
-      data = await res.json(); // 避免非 JSON 报错导致崩溃
+      data = await res.json();
     } catch (jsonError) {
       return resultDiv.innerHTML = `<p>❌ 上传失败：响应格式不合法（非 JSON）</p>`;
     }
 
-    if (res.ok && data.url) {
+    const urls = data.urls || (data.url ? [data.url] : null);
+
+    if (res.ok && urls) {
       resultDiv.innerHTML = `
         <p>✅ 上传成功</p>
-        <p><a href="${data.url}" target="_blank">${data.url}</a></p>
-        <img src="${data.url}" width="300" />
+        ${urls.map(url => `
+          <p><a href="${url}" target="_blank">${url}</a></p>
+          <img src="${url}" width="300" />
+        `).join('')}
       `;
     } else {
       resultDiv.innerHTML = `<p>❌ 上传失败：${data.error || '未知错误'}</p>`;
@@ -40,3 +44,4 @@ document.getElementById('upload-form').addEventListener('submit', async (e) => {
     resultDiv.innerHTML = `<p>❌ 上传失败：${error.message}</p>`;
   }
 });
+
