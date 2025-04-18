@@ -17,10 +17,15 @@ document.getElementById('upload-form').addEventListener('submit', async (e) => {
   try {
     const res = await fetch(`${apiBaseUrl}/upload`, {
       method: "POST",
-      body: formData
+      body: formData,
     });
 
-    const data = await res.json();
+    let data = {};
+    try {
+      data = await res.json(); // 避免非 JSON 报错导致崩溃
+    } catch (jsonError) {
+      return resultDiv.innerHTML = `<p>❌ 上传失败：响应格式不合法（非 JSON）</p>`;
+    }
 
     if (res.ok && data.url) {
       resultDiv.innerHTML = `
