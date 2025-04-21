@@ -29,22 +29,18 @@
 
 - 创建 R2 储存桶，例如：`img`
 - 创建 Worker 服务，绑定 R2 资源
-- 配置变量：
-  - `R2_BUCKET_NAME=img`
-  - `R2_PUBLIC_DOMAIN=abc123.r2.cloudflarestorage.com`
-  - `LIST_PATH=/list`
 - 绑定
   - R2 存储桶
 
-### 2. 部署 Worker
+### 2. 部署 Worker代码
 
-将 `worker.js` 部署到 Cloudflare Workers
+将 `worker.js`代码 部署到 Cloudflare Workers
 
 ### 3. 前端部署
 
 将前端静态页面（含 `index.html`、`upload.js`、`styles.css`、`config.js`）部署到任意支持静态站点的平台（如 Cloudflare Pages、Vercel、GitHub Pages 等）。
 
-你也可以自定义配置 `config.js` 文件：
+自定义配置 `config.js` 文件：
 
 ```js
 window.IMG_BED_CONFIG = {
