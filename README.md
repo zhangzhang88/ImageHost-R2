@@ -17,6 +17,12 @@
 - 🔐 用户注册与认证（如 Supabase）
 - 📁 云盘视图与图片管理界面
 
+## 📚 教程指南
+- 📖 文章教程：[博客教程](https://blog.nbvil.com/posts/imagehost)
+- 🎬 视频教程：
+  - B站：[B站视频](https://blog.nbvil.com/posts/imagehost)
+  - YouTube：[YouTube视频](https://blog.nbvil.com/posts/imagehost)
+    
 ## 🚀 快速开始
 
 ### 1. 配置 Cloudflare 环境
