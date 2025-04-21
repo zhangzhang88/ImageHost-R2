@@ -30,8 +30,8 @@
 - 创建 R2 储存桶，例如：`img`
 - 创建 Worker 服务，绑定 R2 资源
 - 配置变量：
-  - `R2_BUCKET_NAME=`
-  - `R2_PUBLIC_DOMAIN=`
+  - `R2_BUCKET_NAME=img`
+  - `R2_PUBLIC_DOMAIN=abc123.r2.cloudflarestorage.com`
   - `LIST_PATH=/list`
 - 绑定
   - R2 存储桶
