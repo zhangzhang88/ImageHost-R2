@@ -96,7 +96,6 @@ window.IMG_BED_CONFIG = {
 
 ## 🙏 鸣谢
 
-- [GitHub](https://github.com) - 托管平台
 - [Cloudflare](https://cloudflare.com) - 提供 Worker 和 R2 存储
 
 
