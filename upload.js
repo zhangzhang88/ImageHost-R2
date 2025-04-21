@@ -1,6 +1,6 @@
 const config = window.IMG_BED_CONFIG || {};
 const apiBaseUrl = config.apiBaseUrl || "http://localhost:8787";
-const MAX_FILES = config.maxFiles || 5; // 默认最多上传 5 张
+const MAX_FILES = config.maxFiles || 5;
 
 document.getElementById('upload-form').addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -14,8 +14,8 @@ document.getElementById('upload-form').addEventListener('submit', async (e) => {
   }
 
   const formData = new FormData();
-  for (let i = 0; i < files.length; i++) {
-    formData.append("file", files[i]);
+  for (const file of files) {
+    formData.append("file", file);
   }
 
   const resultDiv = document.getElementById('result');
@@ -24,26 +24,19 @@ document.getElementById('upload-form').addEventListener('submit', async (e) => {
   try {
     const res = await fetch(`${apiBaseUrl}/upload`, {
       method: "POST",
-      body: formData,
+      body: formData
     });
 
-    let data = {};
-    try {
-      data = await res.json();
-    } catch (jsonError) {
-      return resultDiv.innerHTML = `<p>❌ 上传失败：响应格式错误</p>`;
-    }
+    const data = await res.json();
 
-    const urls = data.urls || (data.url ? [data.url] : null);
-
-    if (res.ok && urls) {
-      resultDiv.innerHTML = `
-        <p>✅ 上传成功</p>
-        ${urls.map(url => `
+    if (res.ok && data.urls && Array.isArray(data.urls)) {
+      resultDiv.innerHTML = `<p>✅ 上传成功，共 ${data.urls.length} 张</p>`;
+      data.urls.forEach(url => {
+        resultDiv.innerHTML += `
           <p><a href="${url}" target="_blank">${url}</a></p>
           <img src="${url}" width="300" />
-        `).join('')}
-      `;
+        `;
+      });
     } else {
       resultDiv.innerHTML = `<p>❌ 上传失败：${data.error || '未知错误'}</p>`;
     }
@@ -51,5 +44,3 @@ document.getElementById('upload-form').addEventListener('submit', async (e) => {
     resultDiv.innerHTML = `<p>❌ 上传失败：${error.message}</p>`;
   }
 });
-
-
