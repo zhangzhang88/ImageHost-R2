@@ -18,10 +18,10 @@
 - 📁 云盘视图与图片管理界面
 
 ## 📚 教程指南
-- 📖 文章教程：[博客教程](https://blog.nbvil.com/posts/imagehost)
+- 📖 文章教程：[博客教程]([https://blog.nbvil.com/server/imagehost)
 - 🎬 视频教程：
-  - B站：[B站视频](https://blog.nbvil.com/posts/imagehost)
-  - YouTube：[YouTube视频](https://blog.nbvil.com/posts/imagehost)
+  - B站：[B站视频](https://www.bilibili.com/video/BV1U159zHEKf/)
+  - YouTube：[YouTube视频](https://youtu.be/VzODYN_eTUk)
     
 ## 🚀 快速开始
 
