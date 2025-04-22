@@ -4,31 +4,56 @@ export default {
     const UPLOAD_PATH = env.UPLOAD_PATH || '/upload';
     const LIST_PATH = env.LIST_PATH || '/list';
 
-    // CORS
+    // CORS 预检
     if (request.method === 'OPTIONS') {
       return new Response(null, { headers: corsHeaders() });
     }
 
-    // 上传接口
+    // ✅ 上传接口（支持多张图片）并添加格式限制
     if (request.method === 'POST' && url.pathname === UPLOAD_PATH) {
       const formData = await request.formData();
-      const file = formData.get("file");
+      const files = formData.getAll("file");
 
-      if (!file || typeof file === "string") {
-        return new Response("Invalid file", { status: 400 });
+      if (!files.length) {
+        return new Response(JSON.stringify({ error: "No files received" }), {
+          status: 400,
+          headers: {
+            "Content-Type": "application/json",
+            ...corsHeaders()
+          }
+        });
       }
 
-      const ext = file.name.split('.').pop();
-      const fileName = `${crypto.randomUUID()}.${ext}`;
+      const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp']; // 允许的图片格式
+      const urls = [];
 
-      await env.R2_BUCKET.put(fileName, file.stream(), {
-        httpMetadata: {
-          contentType: file.type
+      for (const file of files) {
+        if (typeof file === "string") continue;
+
+        // 检查文件类型
+        if (!allowedTypes.includes(file.type)) {
+          return new Response(JSON.stringify({ error: "Invalid file type. Only images are allowed." }), {
+            status: 400,
+            headers: {
+              "Content-Type": "application/json",
+              ...corsHeaders()
+            }
+          });
         }
-      });
 
-      const fileUrl = `${url.origin}/${fileName}`;
-      return new Response(JSON.stringify({ url: fileUrl }), {
+        const ext = file.name.split('.').pop();
+        const fileName = `${crypto.randomUUID()}.${ext}`;
+
+        await env.R2_BUCKET.put(fileName, file.stream(), {
+          httpMetadata: {
+            contentType: file.type
+          }
+        });
+
+        urls.push(`${url.origin}/${fileName}`);
+      }
+
+      return new Response(JSON.stringify({ urls }), {
         headers: {
           "Content-Type": "application/json",
           ...corsHeaders()
@@ -36,7 +61,7 @@ export default {
       });
     }
 
-    // 图片列表 - 返回 HTML
+    // 📄 图片列表页面
     if (request.method === 'GET' && url.pathname === LIST_PATH) {
       const list = await env.R2_BUCKET.list({ limit: 1000 });
       const files = list.objects;
@@ -64,7 +89,7 @@ export default {
       });
     }
 
-    // 访问图片
+    // 🖼 访问图片
     if (request.method === 'GET') {
       const key = url.pathname.slice(1);
       if (!key) return new Response("Missing file key", { status: 400 });
@@ -85,6 +110,7 @@ export default {
   }
 };
 
+// CORS 跨域头
 function corsHeaders() {
   return {
     "Access-Control-Allow-Origin": "*",
