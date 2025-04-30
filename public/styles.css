@@ -1,0 +1,114 @@
+/* 页面整体布局 */
+body {
+  font-family: Arial, sans-serif;
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+
+
+/* 主体内容块 */
+.container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.8); /* 白色半透明 */
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* 文件上传框 */
+input[type="file"] {
+  margin: 20px 0;
+}
+
+/* 按钮样式 */
+button {
+  padding: 10px 20px;
+  background-color: #0070f3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0055cc;
+}
+
+/* 登录注册输入框 */
+#auth-forms input {
+  display: block;
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 8px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+/* 弹窗蒙层 */
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+/* 弹窗内容 */
+.modal-content {
+  background: #fff;
+  padding: 24px;
+  border-radius: 8px;
+  width: 300px;
+  position: relative;
+}
+
+/* 隐藏元素 */
+.hidden {
+  display: none;
+}
+
+/* 关闭按钮 */
+.close-button {
+  position: absolute;
+  right: 12px;
+  top: 8px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* 让登录/注册按钮和下拉框透明 */
+#login-register-btn {
+  background-color: rgba(59, 130, 246, 0); /* 完全透明 */
+  color: rgba(255, 255, 255, 0); /* 完全透明文字 */
+  border: none; /* 去掉边框 */
+}
+
+#user-profile {
+  background-color: rgba(59, 130, 246, 0); /* 完全透明背景 */
+}
+
+#dropdown-menu {
+  background-color: rgba(255, 255, 255, 0); /* 完全透明背景 */
+  box-shadow: none; /* 去掉阴影 */
+  display: none; /* 隐藏下拉菜单 */
+}
+
+/* 在用户已登录时，保持透明但仍可点击的状态 */
+#login-register-btn.hidden {
+  display: none;
+}
+
+#user-profile.hidden {
+  display: none;
+}
