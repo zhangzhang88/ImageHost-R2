@@ -77,7 +77,7 @@ window.IMG_BED_CONFIG = {
 - 提交 [Issue](https://github.com/sindricn/ImageHost-R2/issues)
 - 加入交流群（可在项目页说明）
   
-<img src="https://api.nbvil.com/de942d82-f3d5-456b-9c37-84dda2ad7a58.png" alt="telegram" width="200" />          <img src="https://api.nbvil.com/273590a8-90a2-4dc6-939a-436d8ba11ef8.jpg" alt="wx" width="200" />
+<img src="PIC/telegram.png" alt="telegram" width="200" />          <img src="PIC/wx.jpeg" alt="wx" width="200" />
 
 ## 📝 License
 
@@ -86,7 +86,7 @@ window.IMG_BED_CONFIG = {
 ## ☕ 赞赏支持
 如果你觉得这个项目对你有帮助，可以通过以下方式支持我：
 
-<img src="https://api.nbvil.com/7ee6b22b-c966-451d-ba55-69ccce37b9fb.jpg" alt="赞赏码" width="200" />
+<img src="PIC/wx.jpg" alt="赞赏码" width="200" />
 
 ## 🙏 鸣谢
 
