@@ -10,20 +10,29 @@
 - ✅ 使用 Cloudflare Worker 处理上传、访问逻辑
 - ✅ 部署简便，前后端可独立托管，支持绑定自定义域名
 - ✅ 极简前端，轻量无依赖，易于修改
+  2025.4.30更新
+- ✅ UI美化
+- ✅ 用户注册与认证
+- ✅ 配置信息加密
 
 ## 🔧 后续计划
 
-- 🌈 UI 优化与暗黑模式支持
-- 🔐 用户注册与认证（如 Supabase）
+- 🔐 用户单独管理内容
 - 📁 云盘视图与图片管理界面
 
 ## 📚 教程指南
+V1.0版本：
+- 📖 文章教程：[博客教程](https://blog.nbvil.com/server/imagehost/)
+- 🎬 视频教程：
+  - B站：[B站视频](https://www.bilibili.com/video/BV1U159zHEKf/)
+  - YouTube：[YouTube视频](https://youtu.be/VzODYN_eTUk)
+V2.0版本：
 - 📖 文章教程：[博客教程](https://blog.nbvil.com/server/imagehost/)
 - 🎬 视频教程：
   - B站：[B站视频](https://www.bilibili.com/video/BV1U159zHEKf/)
   - YouTube：[YouTube视频](https://youtu.be/VzODYN_eTUk)
     
-## 🚀 快速开始
+## 🚀 快速开始（仅适用1.0版本）
 
 ### 1. 配置 Cloudflare 环境
 
@@ -38,7 +47,7 @@
 
 ### 3. 前端部署
 
-将前端静态页面（含 `index.html`、`upload.js`、`styles.css`、`config.js`）部署到任意支持静态站点的平台（如 Cloudflare Pages、Vercel、GitHub Pages 等）。
+项目部署到任意支持静态站点的平台（如 Cloudflare Pages、Vercel、GitHub Pages 等）。
 
 自定义配置 `config.js` 文件：
 
@@ -47,18 +56,6 @@ window.IMG_BED_CONFIG = {
   apiBaseUrl: "https://your-worker-domain.workers.dev",  //worker访问地址
   maxFiles: 5     //自定义最大上传文件数量                                          
 }
-```
-
-## 📦 项目结构
-
-```
-/
-├── worker.js          # Worker 服务端逻辑
-├── public/
-│   ├── index.html     # 前端页面
-│   ├── upload.js      # 上传逻辑
-│   ├── config.js      # 自定义配置
-│   └── styles.css     # 样式文件
 ```
 
 ## 💡 支持图片格式
@@ -79,7 +76,7 @@ window.IMG_BED_CONFIG = {
 - 提交 [Issue](https://github.com/sindricn/ImageHost-R2/issues)
 - 加入交流群（可在项目页说明）
   
-<img src="https://api.nbvil.com/de942d82-f3d5-456b-9c37-84dda2ad7a58.png" alt="赞赏码" width="200" />          <img src="https://api.nbvil.com/273590a8-90a2-4dc6-939a-436d8ba11ef8.jpg" alt="赞赏码" width="200" />
+<img src="https://api.nbvil.com/de942d82-f3d5-456b-9c37-84dda2ad7a58.png" alt="telegram" width="200" />          <img src="https://api.nbvil.com/273590a8-90a2-4dc6-939a-436d8ba11ef8.jpg" alt="wx" width="200" />
 
 ## 📝 License
 
