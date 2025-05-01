@@ -33,7 +33,6 @@ V2.0版本：
 - 🎬 视频教程：
   - B站：[B站视频](https://www.bilibili.com/video/BV1beGvzcEbb/)
   - YouTube：[YouTube视频](https://youtu.be/-Utcxd6UFC8)
-)
     
 ## 🚀 快速开始（仅适用1.0版本）
 
