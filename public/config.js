@@ -1,5 +1,5 @@
 async function fetchConfig() {
-  const res = await fetch("https://api.nbvil.com/config");
+  const res = await fetch("https://image.ztr8.uk");
   if (!res.ok) throw new Error("获取配置失败");
   return await res.json();
 }
